@@ -28,3 +28,50 @@ var orm = {
                 callback(result);
         });
     },
+
+    insertOne: function(tableInput, cols, vals, callback) {
+        var queryString = "INSERT INTO " + tableInput;
+        queryString += " (";
+        queryString += cols.toString();
+        queryString += ") ";
+        queryString += "VALUES (";
+        queryString += printQuestionMarks(vals.length);
+        queryString += ") ";
+        
+        console.log(queryString);
+        connection.query(queryString, vals, function(err, result) {
+            if (err) {
+                throw err;
+            }   
+                callback(result);
+        });
+    },
+    
+    updateOne: function(tableInput, objColVals, condition, callback) {
+        var queryString = "UPDATE " + tableInput;
+        queryString += " SET ";
+        queryString += objToSql(objColVals);
+        queryString += " WHERE ";
+        queryString += condition;
+        console.log(queryString);
+        connection.query(queryString, function(err, result) {
+            if (err) {
+                throw err;
+            }   
+                callback(result);
+        });
+    },
+    deleteOne: function (tableInput, condition, callback) {
+        var queryString = "DELETE FROM " + tableInput;
+        queryString += " WHERE ";
+        queryString += condition;
+        console.log(queryString);
+        connection.query(queryString, function(err, result) {
+            if (err){
+                throw err
+            }   
+                callback(result);
+        });
+    }
+};
+module.exports = orm;
