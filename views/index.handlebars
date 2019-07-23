@@ -1,0 +1,39 @@
+   <main> 
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-lg-6">
+                <div class="card">
+                  <h5 class="card-header text-white bg-danger text-center">New Burgers:</h5>
+                    <div class="card-body">
+                      <ul>
+                          {{#each burgers}}
+                                {{#unless devoured}}
+                                    <span> {{this.id}} - {{this.burger_name}} </span> 
+                                    <button type="button" class="eatBurger btn btn-dark float-right"  data-id="{{this.id}}" data-newDevoured="{{devour}}"><i class="fas fa-utensils"></i></button>
+                                    <hr>
+                                {{/unless}}
+                            {{/each}}
+                      </ul>
+                    </div>
+                </div>
+              </div>
+              
+              <div class="col-lg-6">
+                <div class="card">
+                  <h5 class="card-header text-white bg-warning text-center">Burgers Devoured:</h5>
+                    <div class="card-body">
+                        <ul>
+                            {{#each burgers}}
+                                {{#if devoured}}
+                                    <span> {{this.id}} - {{this.burger_name}} </span> 
+                                    <button type="button" class="trashBurger btn btn-dark float-right" data-id="{{this.id}}" data-newDevoured="{{devour}}"><i class="far fa-trash-alt"></i></button>
+                                    <hr>
+                                {{/if}}
+                            {{/each}}
+                        </ul>
+                    </div>
+                </div>
+              </div>
+          </div>
+      </div>
+</main> 
