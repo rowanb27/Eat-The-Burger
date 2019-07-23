@@ -10,3 +10,12 @@ if (process.env.JAWSDB_URL) {
         database: "burgers_db"
     });
 };
+
+connection.connect(function(err) {
+    if (err) {
+        console.log(`There has been an error in connecting: ${err.stack}`);
+        
+    } else 
+        console.log(`You are connected as id: ${connection.threadId}`);
+});
+module.exports = connection;
